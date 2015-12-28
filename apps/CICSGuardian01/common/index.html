@@ -1,0 +1,1098 @@
+<!DOCTYPE HTML>
+<html>
+    	<head>
+    		<meta charset="UTF-8">
+    		<title>index</title>
+    		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    		<link rel="stylesheet" href="css/main.css">
+    		<link rel="shortcut icon" href="images/favicon.png">
+    		<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    		<link href="jqueryMobile/jquery.mobile.inline-png-1.4.2.css" rel="stylesheet">
+    		<link href="jqueryMobile/jquery.mobile.structure-1.4.2.css" rel="stylesheet">
+    		<link href="jqueryMobile/jquery.mobile.theme-1.4.2.css" rel="stylesheet">
+    		<link href="jqueryMobile/jquery.mobile-1.4.2.css" rel="stylesheet">
+    		<link href="jqueryMobile/jquery.mobile.external-png-1.4.2.css" rel="stylesheet">
+    		<link href="jqueryMobile/jquery.mobile.inline-svg-1.4.2.css" rel="stylesheet">
+    		<link rel="stylesheet" href="jqueryMobile/jquery.mobile.icons-1.4.2.css">
+    		<link rel="stylesheet" href="css/main.css">
+    		<script>window.$ = window.jQuery = WLJQ;</script>
+    		<script src="jqueryMobile/jquery.mobile-1.4.2.js"></script>
+    		<script src="js/flotr2.min.js"></script>
+    		<link rel="stylesheet" href="css/main.css">
+
+    	</head>
+    	<body style="display: none; background-color: #2a2a2a">
+
+    	        <!-- Page_Menu Begin -->
+				<div data-role="page" id="Page_Menu" class="type-interior">
+					<div id="AppDiv">
+					
+						<div id="header" data-role="header" data-theme="b" data-position="fixed">						
+						    <!-- <a href="index.html" data-icon="back">Back</a> -->
+							<h6 style="font-size: small"><img src="images/cics_logo3.gif" width="15" height="15"/>CICS Guardian<img src="images/cics_logo3.gif" width="15" height="15"/></h6>
+							<!-- <a href="#Page_CICSRegionList" data-icon="arrow-r">Next</a> -->
+							<hr/>
+							<table class="table_header01">
+								<tbody>
+									<tr> <td id="Menu_header_title">Menu</td> </tr>
+									<tr> <td id="Menu_header_user">User: <span class='span_normal span_italic'>Unknown</span></td> 
+									</tr>
+								</tbody>
+							</table>
+				        </div>
+				        
+						<div data-role="content" data-theme="b">
+						    
+	    					<br/><br/><br/><br/><br/>
+	    					<ul data-role="listview" data-inset="true">
+    							<li>
+    								<a href="#Page_CICSRegionList">
+    								<!-- <a href="#Page_CICSRegionList" data-transition="slide"> -->
+							       		<img src="images/icon_dynamicStorage.png" />
+							    		<p class="wordbreak">
+							    			<b>Dynamic Storage Monitoring</b><br/>
+							    			(DSA, EDSA, GDSA)							    			
+							    		</p>
+							    	</a>
+							    </li>
+						    </ul>
+	    					
+	    					
+	    					<br/><br/><br/><br/><br/>
+	    					
+	    					<div style="font-size: x-small; text-align: center">
+	    						<img src="images/SupportedISE.png" width="64"/><br/>
+	    						© Copyright IBM Japan Systems Engineering, Co., Ltd. 2014
+	    					</div>
+	    					<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+							<hr/>
+														   
+						</div>
+						
+						<div data-role="footer" data-theme="b" data-position="fixed" style="text-align: center">
+       						<a data-role="button" id="button_logout">Logout</a>
+    					</div>
+					</div>
+					<div id="AuthDiv" style="display: none">
+						<div id="header" data-role="header" data-theme="b" data-position="fixed">						
+						    <h6 style="font-size: small"><img src="images/cics_logo3.gif" width="15" height="15"/>CICS Guardian<img src="images/cics_logo3.gif" width="15" height="15"/></h6>
+						</div>	
+						<div data-role="content" data-theme="b">
+							<br/>
+	    					<hr/>
+	    					Authentication Required        		
+			       			<input type="text" placeholder="Enter userId" id="AuthUserId"/><br />
+			       			<input type="password" placeholder="Enter password" id="AuthPassword"/><br />
+			       			<p id="AuthMessage"></p>
+			       			<br/>
+			       			<input type="button" value="Submit" id="AuthSubmitButton" />
+			       			<!-- <input type="button" value="Cancel" id="AuthCancelButton" /> -->
+			       			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+							
+						</div>
+					</div>
+				</div>
+				<!-- Page_Menu End -->	
+    		
+
+				<!-- Page_CICSRegionList Begin -->
+				<div data-role="page" id="Page_CICSRegionList" class="type-interior">
+				<!-- <div id="AppDiv"> -->
+	
+			        <div id="header" data-role="header" data-theme="b" data-position="fixed">						
+					    <a href="#Page_Menu" data-role="button" data-icon="back">Back</a>
+						<h6 style="font-size: small"><img src="images/cics_logo3.gif" width="15" height="15"/>CICS Guardian<img src="images/cics_logo3.gif" width="15" height="15"/></h6>
+						<a href="#" id="button_refreshCICSRegionList" data-role="button" data-icon="refresh">Refresh</a>
+						<hr/>
+						<table class="table_header01">
+							<tbody>
+								<tr> <td colspan=2 id="CICSRegionList_header_title">Dynamic Storage Monitoring</td> </tr>
+								<tr> <td id="CICSRegionList_header_user" style="text-align: left">User: <span class='span_normal span_italic'>Unknown</span></td> <td id="CICSRegionList_header_refreshTime" style="text-align: right">Refresh Time: <span class='span_normal span_italic'>0000/00/00-00:00:00</span></td></tr>
+							</tbody>
+						</table>
+						<table class="table_header01">
+							<tbody>
+								<tr>
+									<td style="text-align: right">Total:</td><td id="CICSRegionList_header_region_count" class='span_normal span_italic'></td>
+									<td></td>
+									<td style="text-align: right"><img src="images/status_green.png" width="10" height="10"/>:</td><td id="CICSRegionList_header_green_count" class='span_normal span_italic'></td> 
+									<td style="text-align: right"><img src="images/status_yellow.png" width="10" height="10"/>:</td><td id="CICSRegionList_header_yellow_count" class='span_normal span_italic'></td> 
+									<td style="text-align: right"><img src="images/status_red.png" width="10" height="10"/>:</td><td id="CICSRegionList_header_red_count" class='span_normal span_italic'></td> 
+									<td style="text-align: right"><img src="images/status_unknown.png" width="10" height="10"/>:</td><td id="CICSRegionList_header_unknown_count" class='span_normal span_italic'></td> 
+								</tr>
+							</tbody>
+						</table>       					
+			        </div>
+			        
+					<div data-role="content" data-theme="b">
+
+						<ul data-role="listview" data-filter="true" id="CICSRegionList">	</ul>
+						
+						<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	
+					</div>
+					
+					<div data-role="footer" data-theme="b" data-position="fixed" style="text-align: center">
+       					<a href="#Page_Menu" data-role="button" data-icon="home">Home</a>
+    				</div>
+				</div>
+				<!-- Page_CICSRegionList End -->
+
+		
+				<!-- Page_StorageCurrent Begin -->
+				<div data-role="page" id="Page_StorageCurrent" class="type-interior">
+
+			        <div id="header" data-role="header" data-theme="b" data-position="fixed">						
+					    <a href="#Page_CICSRegionList" data-role="button" data-icon="back">Back</a>
+						<h6 style="font-size: small"><img src="images/cics_logo3.gif" width="15" height="15"/>CICS Guardian<img src="images/cics_logo3.gif" width="15" height="15"/></h6>
+						<a href="#" id="button_refreshStorageCurrent" data-role="button" data-icon="refresh">Refresh</a>
+						<hr/>
+						<table class="table_header01">
+							<tbody>
+								<tr> <td colspan=2 id="StorageCurrent_header_title">Dynamic Storage Monitoring - Current Data</td> </tr>
+								<tr> <td id="StorageCurrent_header_user" style="text-align: left">User: <span class='span_normal span_italic'>Unknown</span></td> <td id="StorageCurrent_header_refreshTime" style="text-align: right">Refresh Time: <span class='span_normal span_italic'>0000/00/00-00:00:00</span></td></tr>
+							</tbody>
+						</table>
+						<table class="table_header01">					
+							<tbody>
+								<tr>
+									<td style="text-align: right">Region:</td><td id="StorageCurrent_header_regionName" class='span_normal span_italic'>Unknwon</td>
+									<td style="text-align: right">SysId:</td><td id="StorageCurrent_header_sysId" class='span_normal span_italic'>Unknwon</td>
+									<td style="text-align: right">CICSplex:</td><td id="StorageCurrent_header_CICSPlexName" class='span_normal span_italic'>Unknwon</td>
+									<td style="text-align: right">MVSSysName:</td><td id="StorageCurrent_header_MVSSysName" class='span_normal span_italic'>Unknwon</td>
+								</tr>
+							</tbody>
+						</table>
+						<div data-role="navbar">
+							<ul id="Tab_StorageCurrent">
+								<li><a id="Tab_DSACurrent" href="#">DSA</a></li>
+								<li><a id="Tab_EDSACurrent" href="#">EDSA</a></li>
+								<li><a id="Tab_GDSACurrent" href="#">GDSA</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div data-role="content" data-theme="b">
+					
+						<div id="TabContents_StorageCurrent">
+							<div id="TabContents_DSACurrent" class="tabContents">
+								<table class="table_currentDynamicStorage_title">
+									<tr>
+										<!-- <td style="width: 18px"><a href="#Page_ChangeDSALimit"><img src="images/gear.gif" width="18" height="18"></a></td> -->
+										<td id="dsa_total_limit" style="text-align: left"></td>
+									    <td style="text-align: right"> <img src="images/stacked_area_chart.gif" width="18" height="18" onClick="StorageHistoryIcon_onClick('DSA')"/></td></tr>
+									<tr><td id="dsa_threshold" style="text-align: left" colspan="2" >Threshold: </td></tr>
+								</table>
+								<div id="graphDSACurrent" class="graph"></div>
+								<table class="table_currentDynamicStorage_data">
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<th style="color: #333333">_</th>
+										<th style="color: #333333">__</th>
+										<th style="color: #333333">_</th>
+										<th></th> 
+										<th style="text-align: center; font-size: small">Used Size</th> 
+										<th style="text-align: center; font-size: small">Allocated Size</th> 
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td style="text-align: left; font-size: small;">Total</td>
+										<td id="dsa_total_used">000 bytes (0%)</td>
+										<td id="dsa_total_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #ffff66"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">CDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="cdsa_used">000 bytes (0%)</td>
+										<td id="cdsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #cc66cc"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">RDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="rdsa_used">000 bytes (0%)</td>
+										<td id="rdsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #ffcc00"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">SDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="sdsa_used">000 bytes (0%)</td>
+										<td id="sdsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #CCC; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #6666cc"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">UDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="udsa_used">000 bytes (0%)</td>
+										<td id="udsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #777777"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">Free</td> 
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td id="dsa_total_free">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+								</table>
+							</div>
+							
+							<div id="TabContents_EDSACurrent" class="tabContents">
+								<table class="table_currentDynamicStorage_title">
+									<tr><td id="edsa_total_limit" style="text-align: left">EDSA Limit:</td> <td style="text-align: right"><img src="images/stacked_area_chart.gif" width="18" height="18" onClick="StorageHistoryIcon_onClick('EDSA')"/></td></tr>
+									<tr><td id="edsa_threshold" style="text-align: left" colspan="2" >Threshold: </td></tr>
+								</table>
+		     					<div id="graphEDSACurrent" class="graph"></div>
+	     						<table class="table_currentDynamicStorage_data">
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<th style="color: #333333">_</th>
+										<th style="color: #333333">__</th>
+										<th style="color: #333333">_</th>
+										<th></th> 
+										<th style="text-align: center; font-size: small">Used Size</th> 
+										<th style="text-align: center; font-size: small">Allocated Size</th> 
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td style="text-align: left; font-size: small;">Total</td>
+										<td id="edsa_total_used">000 bytes (0%)</td>
+										<td id="edsa_total_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #ffff66"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">ECDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="ecdsa_used">000 bytes (0%)</td>
+										<td id="ecdsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #cc66cc"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">ERDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="erdsa_used">000 bytes (0%)</td>
+										<td id="erdsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #ffcc00"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">ESDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="esdsa_used">000 bytes (0%)</td>
+										<td id="esdsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #CCC; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #6666cc"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">EUDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="eudsa_used">000 bytes (0%)</td>
+										<td id="eudsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #cc6666"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">ETDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="etdsa_used">000 bytes (0%)</td>
+										<td id="etdsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #777777"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">Free</td> 
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td id="edsa_total_free">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+								</table>
+							</div>
+							
+							<div id="TabContents_GDSACurrent" class="tabContents">
+								<table class="table_currentDynamicStorage_title">
+									<tr><td id="gdsa_total_limit" style="text-align: left">GDSA Limit:</td> <td style="text-align: right"> <img src="images/stacked_area_chart.gif" width="18" height="18" onClick="StorageHistoryIcon_onClick('GDSA')"/></td></tr>
+									<tr><td id="gdsa_threshold" style="text-align: left" colspan="2" >Threshold: </td></tr>
+								</table>
+								<div id="graphGDSACurrent" class="graph"></div>
+								<table class="table_currentDynamicStorage_data">
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<th style="color: #333333">_</th>
+										<th style="color: #333333">__</th>
+										<th style="color: #333333">_</th>
+										<th></th> 
+										<th style="text-align: center; font-size: small">Used Size</th> 
+										<th style="font-size: small">Allocated Size</th> 
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td style="text-align: left; font-size: small;">Total</td>
+										<td id="gdsa_total_used">000 bytes (0%)</td>
+										<td id="gdsa_total_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #ffff66"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">GCDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="gcdsa_used">000 bytes (0%)</td>
+										<td id="gcdsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #ffcc00"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">GSDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="gsdsa_used">000 bytes (0%)</td>
+										<td id="gsdsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #CCC; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #6666cc"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">GUDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="gudsa_used">000 bytes (0%)</td>
+										<td id="gudsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #777777"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">Free</td> 
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td id="gdsa_total_free">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+								</table>	
+								<br/><br/><br/><br/>						
+							</div>
+						</div>
+
+						<br/><br/>
+					</div>
+					
+					<div data-role="footer" data-theme="b" data-position="fixed" style="text-align: center">
+       						<a href="#Page_Menu" data-role="button" data-icon="home">Home</a>
+    				</div>
+    				
+				</div>
+				<!-- Page_StorageCurrent End -->
+				
+
+				<!-- Page_StorageHistory Begin -->
+				<div data-role="page" id="Page_StorageHistory" class="type-interior">
+			        <div id="header" data-role="header" data-theme="b" data-position="fixed">						
+					    <a href="#Page_StorageCurrent" data-role="button" data-icon="back">Back</a>
+						<h6 style="font-size: small"><img src="images/cics_logo3.gif" width="15" height="15"/>CICS Guardian<img src="images/cics_logo3.gif" width="15" height="15"/></h6>
+						<a href="#" id="button_refreshStorageHistory" data-role="button" data-icon="refresh">Refresh</a>
+						<hr/>
+						<table class="table_header01">
+							<tbody>
+								<tr> <td colspan=2 id="StorageHistory_header_title">Dynamic Storage Monitoring - History Data</td> </tr>
+								<tr> <td id="StorageHistory_header_user" style="text-align: left">User: <span class='span_normal span_italic'>Unknown</span></td> <td id="StorageHistory_header_refreshTime" style="text-align: right">Refresh Time: <span class='span_normal span_italic'>0000/00/00-00:00:00</span></td></tr>
+							</tbody>
+						</table>
+						<table class="table_header01">					
+							<tbody>
+								<tr>
+									<td style="text-align: right">Region:</td><td id="StorageHistory_header_regionName" class='span_normal span_italic'>Unknwon</td>
+									<td style="text-align: right">SysId:</td><td id="StorageHistory_header_sysId" class='span_normal span_italic'>Unknwon</td>
+									<td style="text-align: right">CICSplex:</td><td id="StorageHistory_header_CICSPlexName" class='span_normal span_italic'>Unknwon</td>
+									<td style="text-align: right">MVSSysName:</td><td id="StorageHistory_header_MVSSysName" class='span_normal span_italic'>Unknwon</td>
+								</tr>
+							</tbody>
+						</table>
+						<div data-role="navbar">
+							<ul id="Tab_StorageHistory">
+								<li><a id="Tab_DSAHistory" href="#">DSA</a></li>
+								<li><a id="Tab_EDSAHistory" href="#">EDSA</a></li>
+								<li><a id="Tab_GDSAHistory" href="#">GDSA</a></li>
+							</ul>
+						</div>      				
+			        </div>
+					<div data-role="content" data-theme="b">	
+						<div id="TabContents_StorageHistory">
+							<div id="TabContents_DSAHistory" class="tabContents">							
+		 						<div id="graphDSAHistory" class="graph2"></div>
+		 						<table class="table_currentDynamicStorage_title">
+									<tr><td id="history_dsa_total_limit" style="text-align: left">DSA Limit:</td>
+									    <td style="text-align: right"><img src="images/stacked_bar_chart.gif" width="18" height="18" onClick="StorageCurrentIcon_onClick('DSA')"/></td>
+									</tr>
+									<tr><td id="history_dsa_threshold" style="text-align: left">Threshold: </td>
+										<td id="history_dsa_time_stamp" style="text-align: right">Time:</td>
+									</tr>
+								</table>
+								<table class="table_currentDynamicStorage_data">
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<th style="color: #333333">_</th>
+										<th style="color: #333333">__</th>
+										<th style="color: #333333">_</th>
+										<th></th> 
+										<th style="text-align: center; font-size: small">Used Size</th> 
+										<th style="text-align: center; font-size: small">Allocated Size</th> 
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td style="text-align: left; font-size: small;">Total</td>
+										<td id="history_dsa_total_used">000 bytes (0%)</td>
+										<td id="history_dsa_total_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #ffff66"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">CDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="history_cdsa_used">000 bytes (0%)</td>
+										<td id="history_cdsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #cc66cc"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">RDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="history_rdsa_used">000 bytes (0%)</td>
+										<td id="history_rdsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #ffcc00"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">SDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="history_sdsa_used">000 bytes (0%)</td>
+										<td id="history_sdsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #CCC; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #6666cc"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">UDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="history_udsa_used">000 bytes (0%)</td>
+										<td id="history_udsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #777777"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">Free</td> 
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td id="history_dsa_total_free">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+								</table>
+							</div>
+							
+							
+							<div id="TabContents_EDSAHistory" class="tabContents">
+		 						<div id="graphEDSAHistory" class="graph2"></div>
+		 						<table class="table_currentDynamicStorage_title">
+									<tr><td id="history_edsa_total_limit" style="text-align: left">EDSA Limit:</td>
+									    <td style="text-align: right"><img src="images/stacked_bar_chart.gif" width="18" height="18" onClick="StorageCurrentIcon_onClick('EDSA')"/></td>
+									</tr>
+									<tr><td id="history_edsa_threshold" style="text-align: left">Threshold: </td>
+										<td id="history_edsa_time_stamp" style="text-align: right">Time:</td>
+									</tr>
+								</table>
+								<table class="table_currentDynamicStorage_data">
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<th style="color: #333333">_</th>
+										<th style="color: #333333">__</th>
+										<th style="color: #333333">_</th>
+										<th></th> 
+										<th style="text-align: center; font-size: small">Used Size</th> 
+										<th style="text-align: center; font-size: small">Allocated Size</th> 
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td style="text-align: left; font-size: small;">Total</td>
+										<td id="history_edsa_total_used">000 bytes (0%)</td>
+										<td id="history_edsa_total_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #ffff66"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">ECDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="history_ecdsa_used">000 bytes (0%)</td>
+										<td id="history_ecdsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #cc66cc"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">ERDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="history_erdsa_used">000 bytes (0%)</td>
+										<td id="history_erdsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #ffcc00"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">ESDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="history_esdsa_used">000 bytes (0%)</td>
+										<td id="history_esdsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #CCC; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #6666cc"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">EUDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="history_eudsa_used">000 bytes (0%)</td>
+										<td id="history_eudsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #cc6666"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">ETDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="history_etdsa_used">000 bytes (0%)</td>
+										<td id="history_etdsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #777777"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">Free</td> 
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td id="history_edsa_total_free">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+								</table>
+							</div>
+							
+							
+							<div id="TabContents_GDSAHistory" class="tabContents">
+		 						<div id="graphGDSAHistory" class="graph2"></div>
+		 						<table class="table_currentDynamicStorage_title">
+									<tr><td id="history_gdsa_total_limit" style="text-align: left">GDSA Limit:</td>
+									    <td style="text-align: right"><img src="images/stacked_bar_chart.gif" width="18" height="18" onClick="StorageCurrentIcon_onClick('GDSA')"/></td>
+									</tr>
+									<tr><td id="history_gdsa_threshold" style="text-align: left">Threshold: </td>
+										<td id="history_gdsa_time_stamp" style="text-align: right">Time:</td>
+									</tr>
+								</table>
+								<table class="table_currentDynamicStorage_data">
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<th style="color: #333333">_</th>
+										<th style="color: #333333">__</th>
+										<th style="color: #333333">_</th>
+										<th></th> 
+										<th style="text-align: center; font-size: small">Used Size</th> 
+										<th style="text-align: center; font-size: small">Allocated Size</th> 
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td style="text-align: left; font-size: small;">Total</td>
+										<td id="history_gdsa_total_used">000 bytes (0%)</td>
+										<td id="history_gdsa_total_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #ffff66"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">GCDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="history_gcdsa_used">000 bytes (0%)</td>
+										<td id="history_gcdsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #ffcc00"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">GSDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="history_gsdsa_used">000 bytes (0%)</td>
+										<td id="history_gsdsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #CCC; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #6666cc"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">GUDSA</td> 
+									</tr>
+									<tr>
+										<td></td><td></td>
+										<td id="history_gudsa_used">000 bytes (0%)</td>
+										<td id="history_gudsa_allocated">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+									<tr>
+										<td rowspan="2"></td>
+										<td rowspan="2" style="background-color: #777777"></td>
+										<td></td>
+										<td colspan="3" style="text-align: left; font-size: small;">Free</td> 
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td id="history_gdsa_total_free">000 bytes (0%)</td>
+									</tr>
+									<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+								</table>
+							</div>
+						</div>
+ 							
+					</div>
+					
+					<div data-role="footer" data-theme="b" data-position="fixed" style="text-align: center">
+       						<a href="#Page_Menu" data-role="button" data-icon="home">Home</a>
+    				</div>
+				</div>
+				<!-- Page_StorageHistory End -->						
+
+				<!-- Page_ChangeDSALimit Begin -->
+				<div data-role="page" id="Page_ChangeDSALimit" class="type-interior">
+					<div id="header" data-role="header" data-theme="b" data-position="fixed">						
+					    <a href="#Page_StorageCurrent" data-role="button" data-icon="back">Back</a>
+						<h6 style="font-size: small"><img src="images/cics_logo3.gif" width="15" height="15"/>CICS Guardian<img src="images/cics_logo3.gif" width="15" height="15"/></h6>
+						<!-- <a href="#" id="button_refreshChangeDSALimit" data-role="button" data-icon="refresh">Refresh</a> -->
+						<hr/>
+						<table class="table_header01">
+							<tbody>
+								<tr> <td colspan=2 id="ChangeDSALimit_header_title">Dynamic Storage Monitoring - Change DSA Limit</td> </tr>
+								<tr> <td id="ChangeDSALimit_header_user" style="text-align: left">User: <span class='span_normal span_italic'>Unknown</span></td> <td id="ChangeDSALimit_header_refreshTime" style="text-align: right">Refresh Time: <span class='span_normal span_italic'>0000/00/00-00:00:00</span></td></tr>
+							</tbody>
+						</table>
+						<table class="table_header01">					
+							<tbody>
+								<tr>
+									<td style="text-align: right">Region:</td><td id="ChangeDSALimit_header_regionName" class='span_normal span_italic'>Unknwon</td>
+									<td style="text-align: right">SysId:</td><td id="ChangeDSALimit_header_sysId" class='span_normal span_italic'>Unknwon</td>
+									<td style="text-align: right">CICSplex:</td><td id="ChangeDSALimit_header_CICSPlexName" class='span_normal span_italic'>Unknwon</td>
+									<td style="text-align: right">MVSSysName:</td><td id="ChangeDSALimit_header_MVSSysName" class='span_normal span_italic'>Unknwon</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<div data-role="content" data-theme="b">
+						<table class="table_currentDynamicStorage_title">
+							<tr><td id="beforeChange_dsa_total_limit" style="text-align: left">DSA Limit:</td> <td style="text-align: right; font-style: italic">Before</td></tr>
+							<tr><td id="beforeChange_dsa_threshold" style="text-align: left" colspan="2" >Threshold: </td></tr>
+						</table>
+						<div id="beforeChange_graphDSACurrent" class="graph"></div>
+						<table class="table_currentDynamicStorage_data">
+							<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+							<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+							<tr>
+								<th style="color: #333333">_</th>
+								<th style="color: #333333">__</th>
+								<th style="color: #333333">_</th>
+								<th></th> 
+								<th style="text-align: center; font-size: small">Used Size</th> 
+								<th style="text-align: center; font-size: small">Allocated Size</th> 
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td style="text-align: left; font-size: small;">Total</td>
+								<td id="beforeChange_dsa_total_used">000 bytes (0%)</td>
+								<td id="beforeChange_dsa_total_allocated">000 bytes (0%)</td>
+							</tr>
+							<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+							<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+						</table>
+						<hr/>
+							New DSA Limit (KB)
+							<div style="font-size: x-small">in the range 2MB to 16MB (2,048KB to 16,384KB), in multiples of 256KB</div>
+							<div id="div_slider_DSALimit" data-role="fieldcontain" class="ui-hide-label">
+							    <label for="slider_DSALimit">New DSA Limit</label>
+							    <input type="range" name="slider_DSALimit" id="slider_DSALimit" value="5120" min="2048" max="16384" step="256" data-highlight="true" data-mini="true" style="font-size: x-small"/>
+							</div>
+							<table class="table_header01">
+								<tr>
+									<td style="text-align: left; font-size: x-small"> <a href="#" data-role="button" id="button_resetDSALimit" data-inline="true" style="font-size: x-small">reset</a></td>
+									<td style="text-align: right; font-size: x-small"> <a href="#" data-role="button" id="button_previewDSALimit" data-inline="true" style="font-size: x-small">preview</a></td>
+								</tr>
+							</table>
+						<hr/>
+						<table class="table_currentDynamicStorage_title">
+							<tr><td id="afterChange_dsa_total_limit" style="text-align: left">DSA Limit:</td> <td style="text-align: right; font-style: italic">After</td></tr>
+							<tr><td id="afterChange_dsa_threshold" style="text-align: left" colspan="2" >Threshold: </td></tr>
+						</table>
+						<div id="afterChange_graphDSACurrent" class="graph"></div>
+						<table class="table_currentDynamicStorage_data">
+							<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+							<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+							<tr>
+								<th style="color: #333333">_</th>
+								<th style="color: #333333">__</th>
+								<th style="color: #333333">_</th>
+								<th></th> 
+								<th style="text-align: center; font-size: small">Used Size</th> 
+								<th style="text-align: center; font-size: small">Allocated Size</th> 
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td style="text-align: left; font-size: small;">Total</td>
+								<td id="afterChange_dsa_total_used">000 bytes (0%)</td>
+								<td id="afterChange_dsa_total_allocated">000 bytes (0%)</td>
+							</tr>
+							<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+							<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+						</table>
+						<hr/>
+						
+
+	 					<!--<div style="text-align: center"> <a href="#Popup_DSALimitConfirm" data-rel="popup" data-role="button" id="button_changeDSALimit" data-position-to="window" data-transition="slidedown" style="font-size: x-small">Change DSA Limit</a></div>-->
+	 						<div style="text-align: center"> <a href="#Popup_DSALimitConfirm" data-rel="popup" data-role="button" id="button_changeDSALimit" data-position-to="window"                             style="font-size: x-small">Change DSA Limit</a></div>
+								
+						
+						<div data-role="popup" id="Popup_DSALimitConfirm" data-dismissible="false" data-overlay-theme="a" style="text-align: center; font-size: small"> 
+							<div data-role="header"> 
+								Change DSA Limit
+							</div> 
+							<div data-role="content">
+								<div id="DSALimitConfirmMessage"></div>
+								<a href="#" data-rel="back" onclick="isChangeDSALimitOK=false" id="dialog_DSALimitConfirmCancel" data-role="button" data-inline="true" style="font-size: x-small">Cancel</a> 
+								<a href="#" data-rel="back" onclick="isChangeDSALimitOK=true" id="button_DSALimitConfirmOK" data-role="button" data-inline="true" style="font-size: x-small">OK</a> 
+							</div>
+						</div>
+						
+						<div data-role="popup" id="Popup_DSALimitResult" data-dismissible="false" data-overlay-theme="a" style="text-align: center; font-size: small"> 
+							<div data-role="header"> 
+								Change DSA Limit
+							</div> 
+							<div data-role="content"> 
+								<div id="DSALimitResultMessage"></div>
+								<a href="#" data-rel="back" id="button_DSALimitResultOK" data-role="button" data-inline="true" style="font-size: x-small">OK</a> 
+							</div>
+						</div>
+					</div>
+
+					<div data-role="footer" data-theme="b" data-position="fixed" style="text-align: center">
+       					<a href="#Page_Menu" data-role="button" data-icon="home">Home</a>
+    				</div>
+				</div>				
+				<!-- Page_ChangeDSALimit End -->
+
+				<!-- Page_ChangeEDSALimit Begin -->
+				<div data-role="page" id="Page_ChangeEDSALimit" class="type-interior">
+					<div id="header" data-role="header" data-theme="b" data-position="fixed">						
+					    <a href="#Page_StorageCurrent" data-role="button" data-icon="back">Back</a>
+						<h6 style="font-size: small"><img src="images/cics_logo3.gif" width="15" height="15"/>CICS Guardian<img src="images/cics_logo3.gif" width="15" height="15"/></h6>
+						<!-- <a href="#" id="button_refreshChangeEDSALimit" data-role="button" data-icon="refresh">Refresh</a> -->
+						<hr/>
+						<table class="table_header01">
+							<tbody>
+								<tr> <td colspan=2 id="ChangeEDSALimit_header_title">Dynamic Storage Monitoring - Change EDSA Limit</td> </tr>
+								<tr> <td id="ChangeEDSALimit_header_user" style="text-align: left">User: <span class='span_normal span_italic'>Unknown</span></td> <td id="ChangeEDSALimit_header_refreshTime" style="text-align: right">Refresh Time: <span class='span_normal span_italic'>0000/00/00-00:00:00</span></td></tr>
+							</tbody>
+						</table>
+						<table class="table_header01">					
+							<tbody>
+								<tr>
+									<td style="text-align: right">Region:</td><td id="ChangeEDSALimit_header_regionName" class='span_normal span_italic'>Unknwon</td>
+									<td style="text-align: right">SysId:</td><td id="ChangeEDSALimit_header_sysId" class='span_normal span_italic'>Unknwon</td>
+									<td style="text-align: right">CICSplex:</td><td id="ChangeEDSALimit_header_CICSPlexName" class='span_normal span_italic'>Unknwon</td>
+									<td style="text-align: right">MVSSysName:</td><td id="ChangeEDSALimit_header_MVSSysName" class='span_normal span_italic'>Unknwon</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<div data-role="content" data-theme="b">
+						<table class="table_currentDynamicStorage_title">
+							<tr><td id="beforeChange_edsa_total_limit" style="text-align: left">EDSA Limit:</td> <td style="text-align: right; font-style: italic">Before</td></tr>
+							<tr><td id="beforeChange_edsa_threshold" style="text-align: left" colspan="2" >Threshold: </td></tr>
+						</table>
+						<div id="beforeChange_graphEDSACurrent" class="graph"></div>
+						<table class="table_currentDynamicStorage_data">
+							<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+							<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+							<tr>
+								<th style="color: #333333">_</th>
+								<th style="color: #333333">__</th>
+								<th style="color: #333333">_</th>
+								<th></th> 
+								<th style="text-align: center; font-size: small">Used Size</th> 
+								<th style="text-align: center; font-size: small">Allocated Size</th> 
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td style="text-align: left; font-size: small;">Total</td>
+								<td id="beforeChange_edsa_total_used">000 bytes (0%)</td>
+								<td id="beforeChange_edsa_total_allocated">000 bytes (0%)</td>
+							</tr>
+							<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+							<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+						</table>
+						<hr/>
+							New EDSA Limit (MB)
+							<div style="font-size: x-small">in the range 48MB to 2047MB, in multiples of 1MB</div>
+							<div id="div_slider_EDSALimit" data-role="fieldcontain" class="ui-hide-label">
+							    <label for="slider_EDSALimit">New EDSA Limit</label>
+							    <input type="range" name="slider_EDSALimit" id="slider_EDSALimit" value="800" min="48" max="2047" step="1" data-highlight="true" data-mini="true" style="font-size: x-small"/>
+							</div>
+							<table class="table_header01">
+								<tr>
+									<td style="text-align: left; font-size: x-small"> <a href="#" data-role="button" id="button_resetEDSALimit" data-inline="true" style="font-size: x-small">reset</a></td>
+									<td style="text-align: right; font-size: x-small"> <a href="#" data-role="button" id="button_previewEDSALimit" data-inline="true" style="font-size: x-small">preview</a></td>
+								</tr>
+							</table>
+						<hr/>
+						<table class="table_currentDynamicStorage_title">
+							<tr><td id="afterChange_edsa_total_limit" style="text-align: left">EDSA Limit:</td> <td style="text-align: right; font-style: italic">After</td></tr>
+							<tr><td id="afterChange_edsa_threshold" style="text-align: left" colspan="2" >Threshold: </td></tr>
+						</table>
+						<div id="afterChange_graphEDSACurrent" class="graph"></div>
+						<table class="table_currentDynamicStorage_data">
+							<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+							<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+							<tr>
+								<th style="color: #333333">_</th>
+								<th style="color: #333333">__</th>
+								<th style="color: #333333">_</th>
+								<th></th> 
+								<th style="text-align: center; font-size: small">Used Size</th> 
+								<th style="text-align: center; font-size: small">Allocated Size</th> 
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td style="text-align: left; font-size: small;">Total</td>
+								<td id="afterChange_edsa_total_used">000 bytes (0%)</td>
+								<td id="afterChange_edsa_total_allocated">000 bytes (0%)</td>
+							</tr>
+							<tr><td colspan="6" style="border-bottom: 1px solid #666666; height:4px; font-size: 0"></td></tr>
+							<tr><td colspan="6" style="height:4px; font-size: 0"></td></tr>
+						</table>
+						<hr/>
+						<div style="text-align: center"> <a href="#Popup_EDSALimitConfirm" data-rel="popup" data-role="button" id="button_changeEDSALimit" data-position-to="window" data-transition="slidedown" style="font-size: x-small">Change EDSA Limit</a></div>
+								
+						
+						<div data-role="popup" id="Popup_EDSALimitConfirm" data-dismissible="false" data-overlay-theme="a" style="text-align: center; font-size: small"> 
+							<div data-role="header"> 
+								Change EDSA Limit
+							</div> 
+							<div data-role="content">
+								<div id="EDSALimitConfirmMessage"></div>
+								<a href="#" data-rel="back" onclick="isChangeEDSALimitOK=false" id="dialog_EDSALimitConfirmCancel" data-role="button" data-inline="true" style="font-size: x-small">Cancel</a> 
+								<a href="#" data-rel="back" onclick="isChangeEDSALimitOK=true" id="button_EDSALimitConfirmOK" data-role="button" data-inline="true" style="font-size: x-small">OK</a> 
+							</div>
+						</div>
+						
+						<div data-role="popup" id="Popup_EDSALimitResult" data-dismissible="false" data-overlay-theme="a" style="text-align: center; font-size: small"> 
+							<div data-role="header"> 
+								Change EDSA Limit
+							</div> 
+							<div data-role="content"> 
+								<div id="EDSALimitResultMessage"></div>
+								<a href="#" data-rel="back" id="button_EDSALimitResultOK" data-role="button" data-inline="true" style="font-size: x-small">OK</a> 
+							</div>
+						</div>
+					</div>
+
+					<div data-role="footer" data-theme="b" data-position="fixed" style="text-align: center">
+       					<a href="#Page_Menu" data-role="button" data-icon="home">Home</a>
+    				</div>
+				</div>				
+				<!-- Page_ChangeEDSALimit End -->
+
+	
+	
+	
+    		<script src="js/initOptions.js"></script>
+    		
+    		<script src="js/main.js"></script>
+    		<script src="js/Menu.js"></script>
+    		<script src="js/CICSRegionList.js"></script>
+    		<script src="js/StorageCurrent.js"></script>
+    		<script src="js/DSACurrent.js"></script>
+    		<script src="js/EDSACurrent.js"></script>
+    		<script src="js/GDSACurrent.js"></script>
+    		<script src="js/StorageHistory.js"></script>
+    		<script src="js/DSAHistory.js"></script>
+    		<script src="js/EDSAHistory.js"></script>
+    		<script src="js/DSALimit.js"></script>
+    		<script src="js/EDSALimit.js"></script>
+    		<script src="js/jsonStore.js"></script>
+    		<script src="js/AdapterAuthRealmChallengeProcessor.js"></script>
+    		
+    		<script src="js/messages.js"></script>
+
+    	</body>
+</html>
